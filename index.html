@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dräng Elsa | Byggföretag</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,700;0,9..144,900;1,9..144,300;1,9..144,700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --concrete:    #f0ebe3;
+    --sand:        #e8dfd0;
+    --warm-grey:   #c4b8a8;
+    --mid-grey:    #8c7d6e;
+    --dark-grey:   #3d3530;
+    --charcoal:    #1e1a17;
+    --black:       #0f0d0b;
+    --amber:       #c8620a;
+    --amber-light: #e07830;
+    --amber-pale:  #f0a060;
+    --white:       #faf8f5;
+  }
+
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--white);
+    color: var(--dark-grey);
+    font-family: 'DM Sans', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ══ NAV ══ */
+  nav {
+    position: fixed; top: 0; width: 100%;
+    padding: 2rem 5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    z-index: 300;
+    transition: all 0.4s ease;
+  }
+
+  nav.scrolled {
+    background: rgba(250,248,245,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid rgba(61,53,48,0.1);
+    padding: 1.3rem 5rem;
+    box-shadow: 0 4px 30px rgba(15,13,11,0.06);
+  }
+
+  .logo {
+    display: flex; flex-direction: column; gap: 2px;
+  }
+
+  .logo-top {
+    font-family: 'Fraunces', serif;
+    font-size: 1.6rem; font-weight: 900;
+    color: var(--charcoal); letter-spacing: -0.5px;
+    line-height: 1;
+  }
+
+  .logo-top span { color: var(--amber); }
+
+  .logo-bottom {
+    font-size: 0.58rem; letter-spacing: 5px;
+    text-transform: uppercase; color: var(--mid-grey);
+    font-weight: 500;
+  }
+
+  .nav-links {
+    display: flex; gap: 2.5rem; list-style: none; align-items: center;
+  }
+
+  .nav-links a {
+    color: var(--mid-grey); text-decoration: none;
+    font-size: 0.78rem; letter-spacing: 1.5px;
+    text-transform: uppercase; font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--charcoal); }
+
+  .nav-cta {
+    background: var(--charcoal) !important;
+    color: var(--white) !important;
+    padding: 0.7rem 1.8rem;
+    transition: background 0.3s !important;
+  }
+
+  .nav-cta:hover { background: var(--amber) !important; }
+
+  /* ══ HERO ══ */
+  .hero {
+    min-height: 100vh;
+    background: var(--charcoal);
+    position: relative; overflow: hidden;
+    display: flex; align-items: center;
+    padding: 0 5rem;
+  }
+
+  /* Diagonal split */
+  .hero-split {
+    position: absolute; inset: 0;
+    background: linear-gradient(105deg, var(--charcoal) 55%, var(--dark-grey) 55%);
+  }
+
+  /* Texture dots */
+  .hero-dots {
+    position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size: 28px 28px;
+  }
+
+  .hero-amber-line {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 5px;
+    background: linear-gradient(to bottom, transparent, var(--amber), transparent);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    max-width: 680px;
+  }
+
+  .hero-tag {
+    display: inline-flex; align-items: center; gap: 0.8rem;
+    font-size: 0.65rem; letter-spacing: 5px;
+    text-transform: uppercase; color: var(--amber-pale);
+    margin-bottom: 2.5rem;
+    animation: fadeIn 0.8s 0.2s ease both;
+  }
+
+  .hero-tag::before {
+    content: ''; width: 30px; height: 1px;
+    background: var(--amber);
+  }
+
+  h1.hero-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(4rem, 8vw, 8rem);
+    font-weight: 900; line-height: 0.95;
+    letter-spacing: -2px;
+    margin-bottom: 2rem;
+    animation: fadeIn 0.8s 0.3s ease both;
+  }
+
+  .hero-title .w1 { display: block; color: var(--white); }
+  .hero-title .w2 { display: block; color: var(--amber); font-style: italic; }
+  .hero-title .w3 {
+    display: block; color: transparent;
+    -webkit-text-stroke: 1px rgba(255,255,255,0.2);
+    font-size: 0.55em; letter-spacing: 0px;
+    font-style: normal; font-weight: 300;
+  }
+
+  .hero-desc {
+    font-size: 1rem; line-height: 1.85;
+    color: rgba(196,184,168,0.75);
+    font-weight: 300; max-width: 440px;
+    margin-bottom: 3rem;
+    animation: fadeIn 0.8s 0.4s ease both;
+  }
+
+  .hero-btns {
+    display: flex; gap: 1rem; align-items: center;
+    animation: fadeIn 0.8s 0.5s ease both;
+  }
+
+  .btn-amber {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    background: var(--amber); color: var(--white);
+    text-decoration: none; padding: 1rem 2.5rem;
+    font-size: 0.75rem; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 600;
+    transition: all 0.3s;
+  }
+
+  .btn-amber:hover {
+    background: var(--amber-light);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 40px rgba(200,98,10,0.4);
+  }
+
+  .btn-line {
+    color: rgba(196,184,168,0.7); text-decoration: none;
+    font-size: 0.75rem; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 500;
+    border-bottom: 1px solid rgba(196,184,168,0.3);
+    padding-bottom: 2px; transition: all 0.3s;
+  }
+
+  .btn-line:hover { color: var(--white); border-color: var(--white); }
+
+  /* Hero right cards */
+  .hero-cards {
+    position: absolute; right: 5rem; top: 50%;
+    transform: translateY(-50%);
+    display: flex; flex-direction: column; gap: 3px;
+    width: 260px;
+    animation: fadeIn 0.8s 0.6s ease both;
+    z-index: 2;
+  }
+
+  .hero-card {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    padding: 1.8rem 1.5rem;
+    transition: background 0.3s;
+  }
+
+  .hero-card:hover { background: rgba(255,255,255,0.07); }
+
+  .hc-num {
+    font-family: 'Fraunces', serif;
+    font-size: 2.8rem; font-weight: 900;
+    color: var(--amber); line-height: 1;
+    margin-bottom: 0.3rem;
+  }
+
+  .hc-label {
+    font-size: 0.72rem; color: rgba(196,184,168,0.6);
+    letter-spacing: 1px; font-weight: 300;
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ══ MARQUEE ══ */
+  .marquee {
+    background: var(--amber);
+    padding: 1rem 0; overflow: hidden;
+    white-space: nowrap;
+  }
+
+  .marquee-inner {
+    display: inline-block;
+    animation: scroll 18s linear infinite;
+    font-size: 0.7rem; letter-spacing: 5px;
+    text-transform: uppercase; color: var(--white);
+    font-weight: 600;
+  }
+
+  @keyframes scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ══ SHARED ══ */
+  .section { padding: 7rem 5rem; position: relative; }
+
+  .eyebrow {
+    font-size: 0.62rem; letter-spacing: 5px;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.8rem;
+  }
+
+  .eyebrow::before {
+    content: ''; width: 20px; height: 2px;
+    background: var(--amber);
+  }
+
+  .sec-title {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(2.2rem, 4.5vw, 4rem);
+    font-weight: 900; color: var(--charcoal);
+    line-height: 1.05; letter-spacing: -1px;
+  }
+
+  .sec-title em {
+    font-style: italic; color: var(--amber);
+  }
+
+  /* ══ SERVICES ══ */
+  .services-bg { background: var(--concrete); }
+
+  .services-inner { max-width: 1200px; margin: 0 auto; }
+
+  .services-head {
+    display: flex; justify-content: space-between;
+    align-items: flex-end; margin-bottom: 4rem;
+  }
+
+  .all-link {
+    color: var(--mid-grey); text-decoration: none;
+    font-size: 0.72rem; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 500;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: color 0.3s; white-space: nowrap;
+  }
+
+  .all-link:hover { color: var(--amber); }
+
+  .svc-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2px;
+  }
+
+  .svc {
+    background: var(--white);
+    padding: 3rem 2.5rem;
+    border-bottom: 3px solid transparent;
+    transition: all 0.35s;
+    position: relative; overflow: hidden;
+  }
+
+  .svc:hover {
+    border-bottom-color: var(--amber);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 50px rgba(15,13,11,0.1);
+  }
+
+  .svc-n {
+    font-family: 'Fraunces', serif;
+    font-size: 5rem; font-weight: 900;
+    color: rgba(61,53,48,0.06);
+    line-height: 1; margin-bottom: 1.5rem;
+    transition: color 0.3s;
+  }
+
+  .svc:hover .svc-n { color: rgba(200,98,10,0.1); }
+
+  .svc-ico { font-size: 2rem; margin-bottom: 1rem; display: block; }
+
+  .svc-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.3rem; font-weight: 700;
+    color: var(--charcoal); margin-bottom: 0.9rem;
+  }
+
+  .svc-text {
+    font-size: 0.875rem; color: var(--mid-grey);
+    line-height: 1.8; font-weight: 300;
+  }
+
+  /* ══ ABOUT ══ */
+  .about-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 7rem; align-items: center;
+  }
+
+  .about-vis {
+    position: relative;
+  }
+
+  .about-img-box {
+    background: var(--sand);
+    height: 520px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 8rem;
+    position: relative; overflow: hidden;
+  }
+
+  .about-img-box::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(135deg, transparent 60%, rgba(200,98,10,0.08));
+  }
+
+  /* Corner accents */
+  .about-img-box::after {
+    content: '';
+    position: absolute; bottom: 0; right: 0;
+    width: 60px; height: 60px;
+    border-bottom: 3px solid var(--amber);
+    border-right: 3px solid var(--amber);
+  }
+
+  .corner-tl {
+    position: absolute; top: 0; left: 0;
+    width: 60px; height: 60px;
+    border-top: 3px solid var(--amber);
+    border-left: 3px solid var(--amber);
+    z-index: 1;
+  }
+
+  .badge-years {
+    position: absolute; bottom: -20px; left: -20px;
+    background: var(--amber);
+    padding: 1.8rem 2rem; text-align: center;
+  }
+
+  .badge-years .big {
+    font-family: 'Fraunces', serif;
+    font-size: 3rem; font-weight: 900;
+    color: var(--white); line-height: 1; display: block;
+  }
+
+  .badge-years .small {
+    font-size: 0.55rem; letter-spacing: 3px;
+    text-transform: uppercase; color: rgba(255,255,255,0.75);
+  }
+
+  .about-text p {
+    font-size: 0.95rem; color: var(--mid-grey);
+    line-height: 1.9; font-weight: 300; margin-bottom: 1.5rem;
+  }
+
+  .perks {
+    display: grid; grid-template-columns: 1fr 1fr;
+    gap: 1rem; margin-top: 2.5rem;
+  }
+
+  .perk {
+    display: flex; align-items: center; gap: 0.7rem;
+    font-size: 0.82rem; color: var(--dark-grey); font-weight: 500;
+  }
+
+  .perk::before {
+    content: '';
+    width: 8px; height: 8px;
+    background: var(--amber); flex-shrink: 0;
+  }
+
+  /* ══ PROJECTS ══ */
+  .proj-bg { background: var(--charcoal); }
+
+  .proj-head {
+    max-width: 1200px; margin: 0 auto 4rem;
+    display: flex; justify-content: space-between; align-items: flex-end;
+  }
+
+  .proj-head .sec-title { color: var(--white); }
+
+  .proj-link {
+    color: rgba(196,184,168,0.6); text-decoration: none;
+    font-size: 0.72rem; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 500;
+    display: flex; align-items: center; gap: 0.4rem;
+    transition: color 0.3s; white-space: nowrap;
+  }
+
+  .proj-link:hover { color: var(--amber-pale); }
+
+  .proj-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 1fr;
+    grid-template-rows: 260px 260px;
+    gap: 3px;
+    max-width: 1200px; margin: 0 auto;
+  }
+
+  .proj-item {
+    background: var(--dark-grey);
+    position: relative; overflow: hidden;
+    display: flex; align-items: flex-end; padding: 2rem;
+    cursor: pointer;
+  }
+
+  .proj-item:first-child { grid-row: 1 / 3; }
+
+  .proj-emoji {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 6rem; opacity: 0.07;
+    transition: transform 0.5s, opacity 0.4s;
+  }
+
+  .proj-item:hover .proj-emoji { transform: scale(1.15); opacity: 0.12; }
+
+  .proj-overlay {
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, rgba(15,13,11,0.85) 0%, transparent 55%);
+  }
+
+  .proj-info { position: relative; z-index: 2; }
+
+  .proj-cat {
+    font-size: 0.6rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--amber-pale);
+    margin-bottom: 0.35rem;
+  }
+
+  .proj-name {
+    font-family: 'Fraunces', serif;
+    font-size: 1.2rem; font-weight: 700; color: var(--white);
+  }
+
+  /* ══ TESTIMONIAL ══ */
+  .testimonial-section {
+    background: var(--sand);
+    padding: 6rem 5rem;
+  }
+
+  .testimonial-inner {
+    max-width: 800px; margin: 0 auto; text-align: center;
+  }
+
+  .quote-mark {
+    font-family: 'Fraunces', serif;
+    font-size: 8rem; font-weight: 900;
+    color: var(--amber); line-height: 0.5;
+    margin-bottom: 2rem; display: block;
+    opacity: 0.4;
+  }
+
+  .quote-text {
+    font-family: 'Fraunces', serif;
+    font-size: clamp(1.3rem, 2.5vw, 2rem);
+    font-style: italic; font-weight: 300;
+    color: var(--charcoal); line-height: 1.6;
+    margin-bottom: 2rem;
+  }
+
+  .quote-author {
+    font-size: 0.72rem; letter-spacing: 3px;
+    text-transform: uppercase; color: var(--mid-grey);
+  }
+
+  /* ══ CONTACT ══ */
+  .contact-inner {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 1fr 1.3fr;
+    gap: 7rem; align-items: start;
+  }
+
+  .c-items { margin-top: 3rem; }
+
+  .c-row {
+    display: flex; gap: 1.2rem;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid rgba(61,53,48,0.08);
+    align-items: flex-start;
+  }
+
+  .c-row:last-child { border-bottom: none; }
+
+  .c-box {
+    width: 42px; height: 42px;
+    border: 1px solid rgba(200,98,10,0.25);
+    background: rgba(200,98,10,0.06);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem; flex-shrink: 0;
+  }
+
+  .c-lbl {
+    font-size: 0.58rem; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 0.35rem;
+  }
+
+  .c-val {
+    font-size: 0.92rem; color: var(--dark-grey);
+    line-height: 1.6; font-weight: 400;
+  }
+
+  /* Form */
+  .form-hed {
+    font-family: 'Fraunces', serif;
+    font-size: 1.5rem; font-style: italic;
+    font-weight: 300; color: var(--charcoal);
+    margin-bottom: 2rem;
+  }
+
+  .cform { display: flex; flex-direction: column; gap: 1rem; }
+
+  .frow { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+
+  .fg { display: flex; flex-direction: column; gap: 0.4rem; }
+
+  .fg label {
+    font-size: 0.58rem; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--mid-grey);
+  }
+
+  .fg input, .fg select, .fg textarea {
+    background: var(--concrete);
+    border: 1px solid rgba(61,53,48,0.12);
+    border-bottom: 2px solid rgba(200,98,10,0.3);
+    color: var(--charcoal);
+    padding: 0.95rem 1rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.88rem; outline: none; resize: none;
+    transition: all 0.3s; -webkit-appearance: none;
+  }
+
+  .fg input:focus, .fg select:focus, .fg textarea:focus {
+    background: var(--sand);
+    border-bottom-color: var(--amber);
+  }
+
+  .fg input::placeholder, .fg textarea::placeholder {
+    color: rgba(140,125,110,0.5);
+  }
+
+  .fg select option { background: var(--white); }
+
+  .fsub {
+    align-self: flex-start;
+    background: var(--charcoal); color: var(--white);
+    border: none; padding: 1rem 3rem;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.75rem; letter-spacing: 2px;
+    text-transform: uppercase; font-weight: 600;
+    cursor: pointer; transition: all 0.3s;
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+
+  .fsub:hover {
+    background: var(--amber);
+    transform: translateY(-2px);
+    box-shadow: 0 15px 35px rgba(200,98,10,0.3);
+  }
+
+  /* ══ FOOTER ══ */
+  footer {
+    background: var(--black);
+    padding: 4rem 5rem 2.5rem;
+  }
+
+  .footer-top {
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 4rem; padding-bottom: 3rem;
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+    margin-bottom: 2rem;
+  }
+
+  .f-brand-desc {
+    font-size: 0.85rem; color: rgba(196,184,168,0.5);
+    line-height: 1.8; margin-top: 1rem; max-width: 260px;
+  }
+
+  .f-logo-top {
+    font-family: 'Fraunces', serif;
+    font-size: 1.4rem; font-weight: 900;
+    color: var(--white);
+  }
+
+  .f-logo-top span { color: var(--amber); }
+
+  .f-logo-sub {
+    font-size: 0.55rem; letter-spacing: 4px;
+    text-transform: uppercase; color: rgba(196,184,168,0.4);
+  }
+
+  .fcol-title {
+    font-size: 0.6rem; letter-spacing: 4px;
+    text-transform: uppercase; color: var(--amber);
+    margin-bottom: 1.5rem;
+  }
+
+  .fcol ul { list-style: none; display: flex; flex-direction: column; gap: 0.8rem; }
+
+  .fcol a {
+    color: rgba(196,184,168,0.5); text-decoration: none;
+    font-size: 0.83rem; transition: color 0.3s;
+  }
+
+  .fcol a:hover { color: var(--white); }
+
+  .footer-bottom {
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .footer-bottom p { font-size: 0.7rem; color: rgba(196,184,168,0.25); }
+
+  /* ══ REVEAL ══ */
+  .reveal {
+    opacity: 0; transform: translateY(22px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+
+  .reveal.on { opacity: 1; transform: none; }
+
+  /* ══ RESPONSIVE ══ */
+  @media (max-width: 1024px) {
+    nav, nav.scrolled { padding: 1.3rem 2rem; }
+    .nav-links { display: none; }
+    .hero { padding: 7rem 2rem 5rem; }
+    .hero-cards { display: none; }
+    .section { padding: 5rem 2rem; }
+    .services-head { flex-direction: column; align-items: flex-start; gap: 1.5rem; }
+    .svc-grid { grid-template-columns: 1fr; }
+    .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .proj-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .proj-item:first-child { grid-row: auto; grid-column: 1 / 3; }
+    .contact-inner { grid-template-columns: 1fr; gap: 3rem; }
+    .frow { grid-template-columns: 1fr; }
+    .footer-top { grid-template-columns: 1fr 1fr; gap: 2.5rem; }
+    footer { padding: 3rem 2rem 2rem; }
+    .footer-bottom { flex-direction: column; gap: 0.8rem; text-align: center; }
+    .testimonial-section { padding: 5rem 2rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="logo">
+    <div class="logo-top">Dräng <span>Elsa</span></div>
+    <div class="logo-bottom">Byggföretag</div>
+  </div>
+  <ul class="nav-links">
+    <li><a href="#tjanster">Tjänster</a></li>
+    <li><a href="#omoss">Om oss</a></li>
+    <li><a href="#projekt">Projekt</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+    <li><a href="#kontakt" class="nav-cta">Begär offert</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-split"></div>
+  <div class="hero-dots"></div>
+  <div class="hero-amber-line"></div>
+
+  <div class="hero-content">
+    <div class="hero-tag">Byggföretag · Sverige</div>
+    <h1 class="hero-title">
+      <span class="w1">Dräng</span>
+      <span class="w2">Elsa</span>
+      <span class="w3">— vi bygger med stolthet</span>
+    </h1>
+    <p class="hero-desc">
+      Dräng Elsa är ett pålitligt byggföretag med erfarenhet av allt från renovering och nybyggnation till underhåll. Vi levererar kvalitet du kan lita på.
+    </p>
+    <div class="hero-btns">
+      <a href="#kontakt" class="btn-amber">
+        Begär offert
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <a href="#tjanster" class="btn-line">Se tjänster</a>
+    </div>
+  </div>
+
+  <div class="hero-cards">
+    <div class="hero-card">
+      <div class="hc-num">15+</div>
+      <div class="hc-label">År i branschen</div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-num">300+</div>
+      <div class="hc-label">Slutförda projekt</div>
+    </div>
+    <div class="hero-card">
+      <div class="hc-num">ROT</div>
+      <div class="hc-label">Godkänd avdrag</div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee">
+  <span class="marquee-inner">
+    ✦ NYBYGGNATION &nbsp;&nbsp; ✦ RENOVERING &nbsp;&nbsp; ✦ UNDERHÅLL &nbsp;&nbsp; ✦ SNICKERI &nbsp;&nbsp; ✦ FASADRENOVERING &nbsp;&nbsp; ✦ ROT-AVDRAG &nbsp;&nbsp; ✦ CERTIFIERADE &nbsp;&nbsp; ✦ NYBYGGNATION &nbsp;&nbsp; ✦ RENOVERING &nbsp;&nbsp; ✦ UNDERHÅLL &nbsp;&nbsp; ✦ SNICKERI &nbsp;&nbsp; ✦ FASADRENOVERING &nbsp;&nbsp; ✦ ROT-AVDRAG &nbsp;&nbsp; ✦ CERTIFIERADE &nbsp;&nbsp;
+  </span>
+</div>
+
+<!-- SERVICES -->
+<section class="section services-bg" id="tjanster">
+  <div class="services-inner">
+    <div class="services-head">
+      <div>
+        <div class="eyebrow">Vad vi gör</div>
+        <h2 class="sec-title">Våra <em>Tjänster</em></h2>
+      </div>
+      <a href="#kontakt" class="all-link">
+        Kontakta oss →
+      </a>
+    </div>
+    <div class="svc-grid">
+      <div class="svc reveal">
+        <div class="svc-n">01</div>
+        <span class="svc-ico">🏗️</span>
+        <div class="svc-name">Nybyggnation</div>
+        <p class="svc-text">Vi uppför nya byggnader från grunden. Villor, flerbostadshus och kommersiella lokaler — alltid med hög precision och kvalitetsmaterial.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">02</div>
+        <span class="svc-ico">🔨</span>
+        <div class="svc-name">Renovering</div>
+        <p class="svc-text">Totalrenoveringar och delrenoveringar av kök, badrum, källare och hela fastigheter. Vi förvandlar slitna utrymmen till moderna, fräscha hem.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">03</div>
+        <span class="svc-ico">🔧</span>
+        <div class="svc-name">Underhåll & Service</div>
+        <p class="svc-text">Löpande underhåll och akuta reparationer för privatpersoner och bostadsrättsföreningar. Vi håller din fastighet i toppskick.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">04</div>
+        <span class="svc-ico">🪟</span>
+        <div class="svc-name">Fönster & Fasad</div>
+        <p class="svc-text">Byte av fönster och dörrar, fasadrenovering och puts. Förbättra energieffektivitet och ge fastigheten ett nytt, attraktivt yttre.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">05</div>
+        <span class="svc-ico">🪵</span>
+        <div class="svc-name">Snickeri</div>
+        <p class="svc-text">Skräddarsydda snickeriarbeten — inbyggnadsförvaring, trappor, köksluckor och snickeridetaljer som lyfter hela interiören.</p>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">06</div>
+        <span class="svc-ico">🏠</span>
+        <div class="svc-name">Tillbyggnad</div>
+        <p class="svc-text">Behöver du mer plats? Vi designar och bygger tillbyggnader som sömlöst integreras med din befintliga bostad eller lokal.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section" id="omoss">
+  <div class="about-inner">
+    <div class="about-vis">
+      <div class="about-img-box">
+        <div class="corner-tl"></div>
+        🏛️
+        <div class="badge-years">
+          <span class="big">15+</span>
+          <span class="small">År</span>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">Om Dräng Elsa</div>
+      <h2 class="sec-title">Byggda på <em>förtroende</em></h2>
+      <br>
+      <p class="reveal">Dräng Elsa är ett familjedrivet byggföretag med rötter och stolthet. Vi grundades med övertygelsen att bra hantverk, ärlighet och ett engagerat team är grunden för varje lyckat byggprojekt.</p>
+      <p class="reveal">Oavsett om det handlar om en liten renovering eller ett stort nybygge behandlar vi varje uppdrag med samma noggrannhet och respekt. Vår styrka är våra medarbetare och vår relation till kunderna.</p>
+      <div class="perks">
+        <div class="perk reveal">Licensierade & försäkrade</div>
+        <div class="perk reveal">ROT-godkänd</div>
+        <div class="perk reveal">Transparent prissättning</div>
+        <div class="perk reveal">Hållbart byggande</div>
+        <div class="perk reveal">Levererar i tid</div>
+        <div class="perk reveal">F-skatt registrerade</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="section proj-bg" id="projekt">
+  <div class="proj-head">
+    <div>
+      <div class="eyebrow" style="color:var(--amber-pale);">Referensprojekt</div>
+      <h2 class="sec-title">Utvalda <em>Projekt</em></h2>
+    </div>
+    <a href="#kontakt" class="proj-link">Se alla →</a>
+  </div>
+  <div class="proj-grid">
+    <div class="proj-item reveal">
+      <div class="proj-emoji">🏢</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Kommersiellt · Stockholm</div>
+        <div class="proj-name">Kontorsrenovering Södermalm</div>
+      </div>
+    </div>
+    <div class="proj-item reveal">
+      <div class="proj-emoji">🏡</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Bostäder · Uppsala</div>
+        <div class="proj-name">Villabygge med garage</div>
+      </div>
+    </div>
+    <div class="proj-item reveal">
+      <div class="proj-emoji">🛁</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Renovering · Västerås</div>
+        <div class="proj-name">Badrumsrenovering BRF</div>
+      </div>
+    </div>
+    <div class="proj-item reveal">
+      <div class="proj-emoji">🪵</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Snickeri · Örebro</div>
+        <div class="proj-name">Köksrenovering & inredning</div>
+      </div>
+    </div>
+    <div class="proj-item reveal">
+      <div class="proj-emoji">🏗️</div>
+      <div class="proj-overlay"></div>
+      <div class="proj-info">
+        <div class="proj-cat">Nybyggnation · Eskilstuna</div>
+        <div class="proj-name">Flerbostadshus 12 lgh</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIAL -->
+<div class="testimonial-section">
+  <div class="testimonial-inner reveal">
+    <span class="quote-mark">"</span>
+    <p class="quote-text">Dräng Elsa renoverade vårt badrum och kök på kortare tid än vi förväntade oss. Resultatet översteg alla våra förväntningar — vi kan varmt rekommendera dem till alla.</p>
+    <div class="quote-author">— Maria Lindström, Villaägare i Uppsala</div>
+  </div>
+</div>
+
+<!-- CONTACT -->
+<section class="section" id="kontakt">
+  <div class="contact-inner">
+    <div>
+      <div class="eyebrow">Ta kontakt</div>
+      <h2 class="sec-title">Låt oss <em>bygga</em><br>tillsammans</h2>
+      <div class="c-items">
+        <div class="c-row reveal">
+          <div class="c-box">📍</div>
+          <div>
+            <div class="c-lbl">Adress</div>
+            <div class="c-val">Byggvägen 8<br>123 45 Stockholm</div>
+          </div>
+        </div>
+        <div class="c-row reveal">
+          <div class="c-box">📞</div>
+          <div>
+            <div class="c-lbl">Telefon</div>
+            <div class="c-val">+46 8 555 098 76</div>
+          </div>
+        </div>
+        <div class="c-row reveal">
+          <div class="c-box">✉️</div>
+          <div>
+            <div class="c-lbl">E-post</div>
+            <div class="c-val">info@drangelsa.se</div>
+          </div>
+        </div>
+        <div class="c-row reveal">
+          <div class="c-box">🕐</div>
+          <div>
+            <div class="c-lbl">Öppettider</div>
+            <div class="c-val">Mån–Fre: 07:00–17:00<br>Lördag: 08:00–13:00</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="eyebrow">Offertförfrågan</div>
+      <div class="form-hed">Berätta om ditt projekt</div>
+      <form class="cform" onsubmit="sendForm(event)">
+        <div class="frow">
+          <div class="fg">
+            <label>Förnamn</label>
+            <input type="text" placeholder="Erik">
+          </div>
+          <div class="fg">
+            <label>Efternamn</label>
+            <input type="text" placeholder="Johansson">
+          </div>
+        </div>
+        <div class="frow">
+          <div class="fg">
+            <label>Telefon</label>
+            <input type="tel" placeholder="070 000 00 00">
+          </div>
+          <div class="fg">
+            <label>E-post</label>
+            <input type="email" placeholder="erik@example.com">
+          </div>
+        </div>
+        <div class="fg">
+          <label>Typ av projekt</label>
+          <select>
+            <option value="">Välj projekttyp...</option>
+            <option>Nybyggnation</option>
+            <option>Renovering</option>
+            <option>Underhåll & Service</option>
+            <option>Fönster & Fasad</option>
+            <option>Snickeri</option>
+            <option>Tillbyggnad</option>
+            <option>Annat</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Ungefärlig budget</label>
+          <select>
+            <option value="">Välj budgetintervall...</option>
+            <option>Under 50 000 kr</option>
+            <option>50 000 – 150 000 kr</option>
+            <option>150 000 – 500 000 kr</option>
+            <option>Över 500 000 kr</option>
+          </select>
+        </div>
+        <div class="fg">
+          <label>Beskrivning</label>
+          <textarea rows="5" placeholder="Beskriv ditt projekt, plats, önskad starttid och andra detaljer..."></textarea>
+        </div>
+        <button type="submit" class="fsub">
+          Skicka förfrågan
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <div class="f-logo-top">Dräng <span>Elsa</span></div>
+      <div class="f-logo-sub">Byggföretag</div>
+      <p class="f-brand-desc">Pålitliga byggare med hjärta. Vi levererar kvalitet, ärlighet och hantverk som håller — projekt efter projekt.</p>
+    </div>
+    <div class="fcol">
+      <div class="fcol-title">Tjänster</div>
+      <ul>
+        <li><a href="#tjanster">Nybyggnation</a></li>
+        <li><a href="#tjanster">Renovering</a></li>
+        <li><a href="#tjanster">Underhåll</a></li>
+        <li><a href="#tjanster">Fönster & Fasad</a></li>
+        <li><a href="#tjanster">Snickeri</a></li>
+        <li><a href="#tjanster">Tillbyggnad</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <div class="fcol-title">Företaget</div>
+      <ul>
+        <li><a href="#omoss">Om oss</a></li>
+        <li><a href="#projekt">Projekt</a></li>
+        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#kontakt">Jobba hos oss</a></li>
+      </ul>
+    </div>
+    <div class="fcol">
+      <div class="fcol-title">Kontakt</div>
+      <ul>
+        <li><a href="tel:+4685550987">+46 8 555 098 76</a></li>
+        <li><a href="mailto:info@drangelsa.se">info@drangelsa.se</a></li>
+        <li><a href="#">Byggvägen 8</a></li>
+        <li><a href="#">123 45 Stockholm</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 Dräng Elsa Byggföretag · Alla rättigheter förbehållna</p>
+    <p>ROT-godkänd · F-skatt · Ansvarsförsäkrad</p>
+  </div>
+</footer>
+
+<script>
+  // Nav scroll
+  const nav = document.getElementById('nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 70);
+  });
+
+  // Scroll reveal with stagger
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach((e, i) => {
+      if (e.isIntersecting) {
+        setTimeout(() => e.target.classList.add('on'), i * 70);
+        obs.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+  // Form submit
+  function sendForm(e) {
+    e.preventDefault();
+    const btn = e.target.querySelector('.fsub');
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✓ Skickad!';
+    btn.style.background = '#16a34a';
+    setTimeout(() => {
+      btn.innerHTML = orig;
+      btn.style.background = '';
+      e.target.reset();
+    }, 3000);
+  }
+</script>
+</body>
+</html>
